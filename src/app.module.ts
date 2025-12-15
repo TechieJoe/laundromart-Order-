@@ -10,13 +10,15 @@ import { OrderModule } from './order.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: config.get<string>('DB_HOST', 'localhost'),
-        port: config.get<number>('DB_PORT', 5432),
-        username: config.get<string>('DB_USERNAME', 'postgres'),
-        password: config.get<string>('DB_PASSWORD', 'password'),
-        database: config.get<string>('DB_NAME', 'laundromart'),
+            url: configService.get<string>('POSTGRES_URL'),
+            host: configService.get<string>('POSTGRES_HOST'),
+            port: configService.get<number>('POSTGRES_PORT'),
+            username: configService.get<string>('POSTGRES_USER'),
+            password: configService.get<string>('POSTGRES_PASSWORD'),
+            database: configService.get<string>('POSTGRES_NAME'),
+
         entities: [Order],
         synchronize: true, // Set to false in production
       }),

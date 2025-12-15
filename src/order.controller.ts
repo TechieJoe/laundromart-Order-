@@ -23,34 +23,39 @@ export class OrderController {
     return this.orderService.getOrders( data.token);
   }
 
-    /**
-     * 
-     Test
+     
+    // Test
   @MessagePattern({ cmd: 'verify_transaction' })
   async verifyTransaction(@Payload() data: { reference: string }) {
     this.logger.log(`Received verify_transaction for ${data.reference}`);
     return this.orderService.verifyTransaction(data.reference);
   }
 
-  */
 
+      /**
+       * live
   @MessagePattern({ cmd: 'verify_payment' })
   async verifyPayment(reference: string) {
     return this.orderService.verifyTransaction(reference);
   }
-    /**
+      */
 
+    //  test
   @MessagePattern({ cmd: 'handle_webhook' })
   async handleWebhook(@Payload() data: { event: any }) {
     this.logger.log(`Received webhook event`);
     return this.orderService.handleWebhookEvent(data.event);
   }
-    */
 
 
+        /**
+      live
   @MessagePattern({ cmd: 'paystack-webhook' })
   async handleWebhook(@Payload() payload: any) {
     this.logger.log(`Received webhook payload for reference: ${payload?.data?.reference}`);
     return this.orderService.processWebhook(payload);
   }
+
+      */
+
 }

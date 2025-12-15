@@ -116,8 +116,8 @@ export class OrderService {
     }
   }
 
-  /**
-   * Verify Paystack transaction(test)
+   // test
+   // Verify Paystack transaction(test)
    
   async verifyTransaction(reference: string) {
     try {
@@ -135,8 +135,10 @@ export class OrderService {
       throw new HttpException('Failed to verify transaction', HttpStatus.BAD_REQUEST);
     }
   }
-    */
 
+
+     /**
+   live
 async verifyTransaction(reference: string) {
   const response = await axios.get(
     `${this.paystackBaseUrl}/transaction/verify/${reference}`,
@@ -166,8 +168,11 @@ async verifyTransaction(reference: string) {
   return { status: false, data: payment }; // ❌ Standard fail return
 }
 
-/**
-   * Handle Paystack webhook
+    */
+
+
+     //test
+   //Handle Paystack webhook
   async handleWebhookEvent(event: any) {
     const reference = event?.data?.reference;
     if (!reference) throw new HttpException('Invalid webhook payload', HttpStatus.BAD_REQUEST);
@@ -176,9 +181,11 @@ async verifyTransaction(reference: string) {
     this.logger.log(`Webhook processed for ${reference}`);
   }
    
-    */
+    
 
 
+  /**
+   * live
    async processWebhook(payload: any) {
     try {
       const reference = payload?.data?.reference;
@@ -205,6 +212,8 @@ async verifyTransaction(reference: string) {
       return { success: false, error: err.message };
     }
   }
+    */
+
   /**
    * Get orders for a user
    */
