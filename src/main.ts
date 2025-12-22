@@ -8,13 +8,16 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        host: '127.0.0.1',
-        port: 6000,
+        host: 'shinkansen.proxy.rlwy.net',
+        port: 53609,
       },
     },
   );
 
-  console.log(`📡 Connected to Order Microservice via TCP (127.0.0.1:6000)`);
+  console.log(`📡 Connected to Order Microservice via TCP (shinkansen.proxy.rlwy.net:53609)`);
   await app.listen();
 }
 bootstrap(); 
+
+
+
